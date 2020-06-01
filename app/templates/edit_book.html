@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div>
+<p>Редактирование книги {{ book }}.</p>
+<hr>
+<form action='' method="POST">
+	{% csrf_token %} 
+	{{ form|crispy }}
+	<input type='submit' value="Редактировать книгу">
+</form>
+
+</div>
+
+
+{% endblock content %}
