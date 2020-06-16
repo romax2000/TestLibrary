@@ -1,4 +1,5 @@
 from django.shortcuts import render
+
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.http import JsonResponse######
@@ -10,7 +11,36 @@ from app.forms import NewUserForm
 from app.forms import NewBookForm
 from app.forms import EditBookForm
 
+from django.views.generic import ListView
+from django.views.generic import DetailView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+
 # Create your views here.
+
+class BaseListView(ListView):
+    model = User
+    template_name = 'base.html'
+class BaseDetailView(DetailView):
+	model = User
+	def get_context_data(self,**kwargs):
+	    context = super().get_context_data(**kwargs)
+	    context['books'] = Book.objects.filter(reader = self.kwargs['pk'])
+	    context['reader'] = User.objects.get(id = self.kwargs['pk'])
+	    return context
+	template_name = 'book.html'
+
+class BaseFormView(CreateView):
+	form_class = NewUserForm
+	success_url = '/'
+	template_name = 'base.html'
+	def post(self , request , *args , **kwargs):
+		self.object = self.get_object()
+		form = self.get_form()
+		if form.is_valid():
+			return self.form_valid(form)
+
+
+"""
 def base_view(request):
 	users = User.objects.all()
 	form = NewUserForm(request.POST or None)
@@ -26,7 +56,7 @@ def base_view(request):
 	'form': form
 	}
 	return render(request, 'base.html', context)
-
+"""
 
 def book_view(request, user_id):
 	books = Book.objects.filter(reader=user_id)

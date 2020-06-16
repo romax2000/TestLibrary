@@ -16,7 +16,7 @@
 
 <div>
 	<table>
-		{% if users.count > 0 %}
+		{% if object.count > 0 %}
 	<tr>
 		<td><strong>ФИО</strong></td>
 		<td><strong>Дата рождения</strong></td>
@@ -24,12 +24,12 @@
 		<td></td>
 	</tr>
 	{% endif %}
-	{% for user in users %}
+
+	{% for object in object_list %}
 	<tr>
-		<td><a href="{{ user.get_absolute_url }}">{{ user.full_name }}</a></td>
-		<td>{{ user.birth_day }}</td>
-		<td>{{ user.phone }}</td>
-		
+		<td><a href="{{ object.get_absolute_url }}">{{ object.full_name }}</a></td>
+		<td>{{ object.birth_day }}</td>
+		<td>{{ object.phone }}</td>
 	</tr>
 	{% endfor %}
 	</table>

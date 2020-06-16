@@ -3,6 +3,7 @@ from django import forms
 from app.models import User
 from app.models import Book
 
+
 class NewUserForm(forms.Form):
 	Years = list(range(2013,1930,-1))
 

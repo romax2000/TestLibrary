@@ -16,7 +16,7 @@ class User(models.Model):
  		return self.full_name
 
  	def get_absolute_url(self):
- 		return reverse('user_books', kwargs={'user_id': self.id})
+ 		return reverse('user_books', kwargs={'pk': self.id})
 
 class Book(models.Model):
 	id = models.AutoField(primary_key=True)
@@ -33,4 +33,4 @@ class Book(models.Model):
 		return self.book_name
 
 	def get_absolute_url(self):
- 		return reverse('edit_book', kwargs={'book_id': self.id})
+ 		return reverse('edit_book', kwargs={'pk': self.id})
