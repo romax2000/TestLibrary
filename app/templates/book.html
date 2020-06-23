@@ -13,7 +13,7 @@
 		<td></td>
 	</tr>
 	{%else%}
-	<p>У пользователя {{ reader.full_name }} нет книг.</p>
+	<p>У пользователя {{ reader }} нет книг.</p>
 	{% endif %}
 	{% for book in books %}
 	<tr>

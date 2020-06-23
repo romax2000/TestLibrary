@@ -26,7 +26,7 @@
 	{% endif %}
 	{% for user in users %}
 	<tr>
-		<td><a href="{{ user.get_absolute_url }}">{{ user.full_name }}</a></td>
+		<td><a href="{{ user.get_absolute_url }}">{{ user }} </a></td>
 		<td>{{ user.birth_day }}</td>
 		<td>{{ user.phone }}</td>
 		
