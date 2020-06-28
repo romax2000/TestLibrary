@@ -10,6 +10,7 @@ class NewUserForm(forms.Form):
     middle_name = forms.CharField(max_length=100, min_length=5)
     birth_day = forms.DateField(widget=forms.SelectDateWidget(years=Years))
     phone = forms.CharField(max_length=20, min_length=15)
+    email = forms.EmailField()
 
     class Meta:
         model = User
@@ -17,7 +18,8 @@ class NewUserForm(forms.Form):
             'full_name',
             'middle_name',
             'birth_day',
-            'phone'
+            'phone',
+            'email'
 
         ]
 
@@ -29,6 +31,7 @@ class NewUserForm(forms.Form):
         self.fields['phone'].label = 'Номер телефона'
         self.fields['phone'].initial = '+375()--'
         self.fields['phone'].help_text = 'Формат: +375(ХХ)ХХХ-ХХ-ХХ'
+
 
 
 '''

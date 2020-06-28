@@ -1,6 +1,9 @@
 from django.db import models
 from django.urls import reverse
-
+from django.db.models.signals import post_save
+#from django.core.mail import send_mail
+#from library.celery import app
+from app.tasks import send_verification_email
 # Create your models here.
 
 
@@ -10,6 +13,7 @@ class User(models.Model):
     middle_name = models.CharField(max_length=100, null=False)
     birth_day = models.DateField(blank=False, null=False)
     phone = models.CharField(max_length=20, blank=True, null=True)
+    email = models.EmailField(max_length=100, blank=False, null=False)
 
     class Meta:
         db_table = 'user'
@@ -20,6 +24,11 @@ class User(models.Model):
 
     def get_absolute_url(self):
         return reverse('user_books', kwargs={'user_id': self.id})
+
+def post_save_user(sender, instance, *args, **kwargs):
+    send_verification_email.delay(instance.email)
+        
+post_save.connect(post_save_user, sender = User)  
 
 
 class Book(models.Model):

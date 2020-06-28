@@ -21,6 +21,7 @@
 		<td><strong>ФИО</strong></td>
 		<td><strong>Дата рождения</strong></td>
 		<td><strong>Номер телефона</strong></td>
+		<td><strong>Электронная почта</strong></td>
 		<td></td>
 	</tr>
 	{% endif %}
@@ -29,7 +30,8 @@
 		<td><a href="{{ user.get_absolute_url }}">{{ user }} </a></td>
 		<td>{{ user.birth_day }}</td>
 		<td>{{ user.phone }}</td>
-		
+		<td>{{ user.email }}</td>
+
 	</tr>
 	{% endfor %}
 	</table>

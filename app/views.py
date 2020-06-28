@@ -20,8 +20,9 @@ def base_view(request):
         birth_day = form.cleaned_data['birth_day']
         phone = form.cleaned_data['phone']
         middle_name = form.cleaned_data['middle_name']
+        email = form.cleaned_data['email']
         User.objects.create(
-            full_name=full_name, birth_day=birth_day, phone=phone, middle_name=middle_name)
+            full_name=full_name, birth_day=birth_day, phone=phone, middle_name=middle_name, email=email)
         return HttpResponseRedirect(reverse('base'))
 
     context = {
