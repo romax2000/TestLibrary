@@ -3,46 +3,46 @@
 <html>
 <head>
 	<meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content=""> 
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="">
+	<meta name="author" content=""> 
 	<title>Library homepage</title>
 </head>
 <body>
-<h3><a href="/">Бибилиотека</a></h3>
-<hr>
-{% block content %}
-
-<div>
-	<table>
-		{% if users.count > 0 %}
-	<tr>
-		<td><strong>ФИО</strong></td>
-		<td><strong>Дата рождения</strong></td>
-		<td><strong>Номер телефона</strong></td>
-		<td><strong>Электронная почта</strong></td>
-		<td></td>
-	</tr>
-	{% endif %}
-	{% for user in users %}
-	<tr>
-		<td><a href="{{ user.get_absolute_url }}">{{ user }} </a></td>
-		<td>{{ user.birth_day }}</td>
-		<td>{{ user.phone }}</td>
-		<td>{{ user.email }}</td>
-
-	</tr>
-	{% endfor %}
-	</table>
-</div>
-
-<div>
+	<h3><a href="/">Бибилиотека</a></h3>
 	<hr>
+	{% block content %}
 
-<form action='' method="POST">
+	<div>
+		<table>
+			{% if users.count > 0 %}
+			<tr>
+				<td><strong>ФИО</strong></td>
+				<td><strong>Дата рождения</strong></td>
+				<td><strong>Номер телефона</strong></td>
+				<td><strong>Электронная почта</strong></td>
+				<td></td>
+			</tr>
+			{% endif %}
+			{% for user in users %}
+			<tr>
+				<td><a href="{{ user.get_absolute_url }}">{{ user }} </a></td>
+				<td>{{ user.birth_day }}</td>
+				<td>{{ user.phone }}</td>
+				<td>{{ user.email }}</td>
+
+			</tr>
+			{% endfor %}
+		</table>
+	</div>
+
+	<div>
+		<hr>
+
+		<form action='' method="POST">
 	{% csrf_token %} <!--Это просто строка, по которой сервер определяет, что пользователь действительно запросил выполнение этого действия.
-Он используется для того, чтобы на другом сайте нельзя было встроить вашу форму под видом чего-то другого.-->
+	Он используется для того, чтобы на другом сайте нельзя было встроить вашу форму под видом чего-то другого.-->
 	{{ form|crispy }} <!--Crispy-forms - это простое отображение форм Django без написания лишнего кода и с минимальными установками-->
 	<input type='submit' value="Добавить пользователя">
 </form>

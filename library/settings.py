@@ -156,3 +156,13 @@ REDIS_PORT = '6379'
 BROKER_URL = 'redis://' + REDIS_HOST + ':' + REDIS_PORT + '/0'
 BROKER_TRANSPORT_OPTIONS = {'visibility_timeout': 3600} 
 CELERY_RESULT_BACKEND = 'redis://' + REDIS_HOST + ':' + REDIS_PORT + '/0'
+
+#переменные в Docker
+#fixtures в папку library +
+#base html ровные блоки +
+#внутри APP отдельную папку API CRUD (оформить как class)
+#serializer (exception (validator)), succses serializer на response
+#decorator разобраться с ним
+#убрать id в Model + 
+#формы можно убрать
+#

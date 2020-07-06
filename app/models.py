@@ -6,7 +6,6 @@ from app.signals import post_save_user
 
 
 class User(models.Model):
-    id = models.AutoField(primary_key=True)
     full_name = models.CharField(max_length=200, null=False)
     middle_name = models.CharField(max_length=100, null=False)
     birth_day = models.DateField(blank=False, null=False)
@@ -27,7 +26,6 @@ post_save.connect(post_save_user, sender = User)
 
 
 class Book(models.Model):
-    id = models.AutoField(primary_key=True)
     reader = models.ForeignKey('User', on_delete=models.CASCADE)
     book_name = models.CharField(max_length=200, null=False)
     author_full_name = models.CharField(max_length=200, null=False)
