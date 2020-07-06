@@ -17,7 +17,7 @@ class User(models.Model):
         ordering = ['full_name']
 
     def __str__(self):
-        return self.full_name + ' ' + self.middle_name
+        return f'{self.full_name} {self.middle_name}'
 
     def get_absolute_url(self):
         return reverse('user_books', kwargs={'user_id': self.id})
