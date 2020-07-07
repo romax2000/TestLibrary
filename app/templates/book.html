@@ -6,32 +6,32 @@
 		{% if books.count > 0 %}
 		<p>Книги пользователя {{ reader }}.</p>
 		<hr>
-	<tr>
-		<td><strong>Название книги</strong></td>
-		<td><strong>Автор</strong></td>
-		<td><strong>Год издания</strong></td>
-		<td></td>
-	</tr>
-	{%else%}
-	<p>У пользователя {{ reader.full_name }} нет книг.</p>
-	{% endif %}
-	{% for book in books %}
-	<tr>
-		<td><a href="{{ book.get_absolute_url }}">{{ book.book_name }}</a></td>
-		<td>{{ book.author_full_name }}</td>
-		<td>{{ book.year }}</td>
-	</tr>
-	{% endfor %}
+		<tr>
+			<td><strong>Название книги</strong></td>
+			<td><strong>Автор</strong></td>
+			<td><strong>Год издания</strong></td>
+			<td></td>
+		</tr>
+		{%else%}
+		<p>У пользователя {{ reader }} нет книг.</p>
+		{% endif %}
+		{% for book in books %}
+		<tr>
+			<td><a href="{{ book.get_absolute_url }}">{{ book.book_name }}</a></td>
+			<td>{{ book.author_full_name }}</td>
+			<td>{{ book.year }}</td>
+		</tr>
+		{% endfor %}
 	</table>
 </div>
 
 <div>
 	<hr>
 
-<form action='' method="POST">
-	{% csrf_token %} 
-	{{ form|crispy }}
-	<input type='submit' value="Добавить книгу">
-</form>
+	<form action='' method="POST">
+		{% csrf_token %} 
+		{{ form|crispy }}
+		<input type='submit' value="Добавить книгу">
+	</form>
 </div>
 {% endblock content %}
