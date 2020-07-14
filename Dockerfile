@@ -5,3 +5,6 @@ WORKDIR /code
 COPY requirements.txt /code/
 RUN pip3 install -r requirements.txt
 COPY . /code/
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+ENTRYPOINT ["/entrypoint.sh"]

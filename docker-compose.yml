@@ -2,8 +2,8 @@ version: '3.7'
 services:
   db:
     image: postgres:12
-    environment:
-        POSTGRES_HOST_AUTH_METHOD: trust
+    env_file:
+      - docker-compose-env/db.env
     volumes:
       - postgres_data:/var/lib/postgresql/data/
   web:
@@ -15,5 +15,7 @@ services:
       - 8000:8000
     depends_on:
       - db
+    env_file:
+      - docker-compose-env/web.env
 volumes:
   postgres_data:
