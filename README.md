@@ -12,5 +12,7 @@
 
 (Docker commands
 sudo docker build .
-sudo docker-compose run web python /code/manage.py migrate —noinput 
+
+sudo docker-compose run web python /code/manage.py migrate —noinput
+ 
 sudo docker-compose up -d —build)
