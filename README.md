@@ -11,6 +11,7 @@
 11. python manage.py runserver
 
 (Docker commands
+
 sudo docker build .
 
 sudo docker-compose run web python /code/manage.py migrate —noinput
