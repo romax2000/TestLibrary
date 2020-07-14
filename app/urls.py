@@ -1,7 +1,7 @@
 from django.conf.urls import url, include
 from django.urls import path
 
-#from app.views import base_view
+from app.views import base_view
 from app.views import book_view
 from app.views import edit_view
 

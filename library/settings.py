@@ -32,7 +32,7 @@ SECRET_KEY = env('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['192.168.99.100']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -87,10 +87,10 @@ WSGI_APPLICATION = 'library.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'library',
+        'NAME': 'postgres',
         'USER' : 'postgres',
-        'PASSWORD' : 'dodgecharger',
-        'HOST' : '127.0.0.1',
+        'PASSWORD' : 'postgres',
+        'HOST' : 'db',
         'PORT' : '5432',
     }
 }

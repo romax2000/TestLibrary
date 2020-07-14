@@ -2,11 +2,13 @@ version: '3.7'
 services:
   db:
     image: postgres:12
+    environment:
+        POSTGRES_HOST_AUTH_METHOD: trust
     volumes:
       - postgres_data:/var/lib/postgresql/data/
   web:
     build: .
-    command: gunicorn
+    command: gunicorn library.wsgi:application --bind 0.0.0.0:8000
     volumes:
       - .:/code
     ports:

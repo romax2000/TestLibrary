@@ -12,6 +12,8 @@ markdown = "*"
 django-filter = "*"
 psycopg2-binary = "*"
 django-crispy-forms = "*"
+gunicorn = "*"
+environ = "*"
 
 [requires]
 python_version = "3.7"
