@@ -9,6 +9,7 @@
 9. python manage.py migrate
 10. python manage.py loaddata fixtures.json
 11. python manage.py runserver
+
 (Docker commands
 sudo docker build .
 sudo docker-compose run web python /code/manage.py migrate —noinput 
