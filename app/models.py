@@ -6,11 +6,12 @@ from app.signals import post_save_user
 
 
 class User(models.Model):
-    full_name = models.CharField(max_length=200, null=False)
-    middle_name = models.CharField(max_length=100, null=False)
-    birth_day = models.DateField(blank=False, null=False)
+    full_name = models.CharField(max_length=200)
+    middle_name = models.CharField(max_length=100)
+    birth_day = models.DateField()
     phone = models.CharField(max_length=20, blank=True, null=True)
-    email = models.EmailField(max_length=100, blank=False, null=False)
+    email = models.EmailField(max_length=100)
+    avatar = models.ImageField(blank=True, null=True)
 
     class Meta:
         db_table = 'user'
@@ -27,9 +28,9 @@ post_save.connect(post_save_user, sender = User)
 
 class Book(models.Model):
     reader = models.ForeignKey('User', on_delete=models.CASCADE)
-    book_name = models.CharField(max_length=200, null=False)
-    author_full_name = models.CharField(max_length=200, null=False)
-    year = models.CharField(max_length=4, blank=False, null=False)
+    book_name = models.CharField(max_length=200)
+    author_full_name = models.CharField(max_length=200)
+    year = models.CharField(max_length=4)
 
     class Meta:
         db_table = 'book'

@@ -90,7 +90,7 @@ DATABASES = {
         'NAME': 'postgres',
         'USER' : 'postgres',
         'PASSWORD' : 'postgres',
-        'HOST' : 'db',
+        'HOST' : '127.0.0.1',
         'PORT' : '5432',
     }
 }
@@ -153,7 +153,7 @@ EMAIL_PORT = 465
 EMAIL_USE_SSL = True
 
 # REDIS related settings 
-REDIS_HOST = 'redis'
+REDIS_HOST = 'localhost'
 REDIS_PORT = '6379'
 BROKER_URL = 'redis://' + REDIS_HOST + ':' + REDIS_PORT + '/0'
 BROKER_TRANSPORT_OPTIONS = {'visibility_timeout': 3600} 

@@ -3,16 +3,10 @@ from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 
-from app.models import User
-from app.models import Book
+from app.models import User, Book
 
-from app.forms import NewUserForm
-from app.forms import NewBookForm
-from app.forms import EditBookForm
+from app.forms import NewUserForm, NewBookForm, EditBookForm
 
-from django.views.generic import ListView
-from django.views.generic import DetailView
-from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 # Create your views here.
 

@@ -1,6 +1,5 @@
 from django import forms
-from app.models import User
-from app.models import Book
+from app.models import User, Book
 
 
 class NewUserForm(forms.Form):
