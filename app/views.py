@@ -3,6 +3,7 @@ from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.db.models import Avg
 
 from app.models import User, Book
 
@@ -21,7 +22,7 @@ def base_view(request):
     except PageNotAnInteger:
         users = current_page.page(1)  
     except EmptyPage:
-        users = current_page.page(current_page.num_pages) 
+        users = current_page.page(current_page.num_pages)
     form = NewUserForm(request.POST or None)
     if form.is_valid():
         full_name = form.cleaned_data['full_name']
@@ -72,6 +73,7 @@ def remove_user_view(request, user_id):
 def book_view(request, user_id):
     books = Book.objects.filter(reader=user_id)
     reader = User.objects.get(id=user_id)
+    avg_cost =  books.aggregate(Avg('cost'))
     form = NewBookForm(request.POST or None)
     if form.is_valid():
         book_name = form.cleaned_data['book_name']
@@ -86,6 +88,7 @@ def book_view(request, user_id):
     context = {
         'books': books,
         'reader': reader,
+        'avg_cost': avg_cost.get('cost__avg'),
         'form': form
     }
     return render(request, 'book.html', context)
