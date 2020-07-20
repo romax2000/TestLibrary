@@ -5,7 +5,7 @@ from django.urls import reverse
 
 from app.models import User, Book
 
-from app.forms import NewUserForm, NewBookForm, EditBookForm
+from app.forms import NewUserForm, EditUserForm, NewBookForm, EditBookForm
 
 
 # Create your views here.
@@ -28,6 +28,37 @@ def base_view(request):
     }
     return render(request, 'base.html', context)
 
+
+def edit_user_view(request, user_id):
+    user = User.objects.get(id=user_id)
+    form = EditUserForm(user, request.POST or None)
+    if form.is_valid():
+        full_name = form.cleaned_data['full_name']
+        birth_day = form.cleaned_data['birth_day']
+        phone = form.cleaned_data['phone']
+        middle_name = form.cleaned_data['middle_name']
+        email = form.cleaned_data['email']
+        user.full_name = full_name
+        user.birth_day = birth_day
+        user.phone = phone
+        user.middle_name = middle_name
+        user.email = email
+        user.save()
+        return HttpResponseRedirect('/edit_user/'+str(user.id)+'/')
+
+    context = {
+        'user': user,
+        'form': form
+    }
+    return render(request, 'edit_user.html', context)
+
+
+def remove_user_view(request, user_id):
+    user = User.objects.get(id = user_id)
+    user.delete()
+    return HttpResponseRedirect(reverse('base'))
+
+
 def book_view(request, user_id):
     books = Book.objects.filter(reader=user_id)
     reader = User.objects.get(id=user_id)
@@ -48,7 +79,7 @@ def book_view(request, user_id):
     return render(request, 'book.html', context)
 
 
-def edit_view(request, book_id):
+def edit_book_view(request, book_id):
     book = Book.objects.get(id=book_id)
     form = EditBookForm(book, request.POST or None)
     if form.is_valid():

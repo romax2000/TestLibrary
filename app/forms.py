@@ -32,6 +32,39 @@ class NewUserForm(forms.Form):
         self.fields['phone'].help_text = 'Формат: +375(ХХ)ХХХ-ХХ-ХХ'
 
 
+class EditUserForm(forms.Form):
+    Years = list(range(2013, 1930, -1))
+
+    full_name = forms.CharField(max_length=200, min_length=5)
+    middle_name = forms.CharField(max_length=100, min_length=5)
+    birth_day = forms.DateField(widget=forms.SelectDateWidget(years=Years))
+    phone = forms.CharField(max_length=20, min_length=15)
+    email = forms.EmailField()
+
+    class Meta:
+        model = User
+        fields = [
+            'full_name',
+            'middle_name',
+            'birth_day',
+            'phone',
+            'email'
+
+        ]
+
+    def __init__(self, user, *args, **kwargs):
+        super(EditUserForm, self).__init__(*args, *kwargs)
+        self.fields['full_name'].label = 'Имя и фамилия'
+        self.fields['full_name'].initial = user.full_name
+        self.fields['middle_name'].label = 'Отчество'
+        self.fields['middle_name'].initial = user.middle_name
+        self.fields['birth_day'].label = 'Дата рождения'
+        self.fields['birth_day'].initial = user.birth_day
+        self.fields['phone'].label = 'Номер телефона'
+        self.fields['phone'].initial = user.phone
+        self.fields['phone'].help_text = 'Формат: +375(ХХ)ХХХ-ХХ-ХХ'
+        self.fields['email'].initial = user.email
+
 
 '''
         #Дополнительные проверки

@@ -32,6 +32,8 @@
 				<td>{{ user.birth_day }}</td>
 				<td>{{ user.phone }}</td>
 				<td>{{ user.email }}</td>
+				<td><a href = '{% url "edit_user" user_id=user.id %}'><button>Изменить пользователя</button></td>
+				<td><a href = '{% url "remove_user" user_id=user.id %}'><button>Удалить пользователя</button></td>
 			</tr>
 			{% endfor %}
 		</table>
