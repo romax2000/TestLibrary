@@ -97,3 +97,9 @@ def edit_book_view(request, book_id):
         'form': form
     }
     return render(request, 'edit_book.html', context)
+
+
+def remove_book_view(request, book_id):
+    book = Book.objects.get(id = book_id)
+    book.delete()
+    return HttpResponseRedirect('/book/'+str(book.reader.id)+'/')

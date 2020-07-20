@@ -20,6 +20,8 @@
 			<td><a href="{{ book.get_absolute_url }}">{{ book.book_name }}</a></td>
 			<td>{{ book.author_full_name }}</td>
 			<td>{{ book.year }}</td>
+			<td><a href = '{{ book.get_absolute_url }}'><button>Изменить книгу</button></td>
+			<td><a href = '{% url "remove_book" book_id=book.id %}'><button>Удалить книгу</button></td>
 		</tr>
 		{% endfor %}
 	</table>
