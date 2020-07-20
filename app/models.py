@@ -1,7 +1,9 @@
 from django.db import models
 from django.urls import reverse
-from django.db.models.signals import post_save
-from app.signals import post_save_user
+from django.utils import timezone
+from django.db.models.signals import post_save, pre_save
+from app.signals import post_save_user, pre_save_edit_book_date
+from datetime import datetime
 # Create your models here.
 
 
@@ -31,6 +33,10 @@ class Book(models.Model):
     book_name = models.CharField(max_length=200)
     author_full_name = models.CharField(max_length=200)
     year = models.CharField(max_length=4)
+    cost = models.FloatField()
+    pages = models.IntegerField()
+    create_date = models.DateField(default=timezone.now)
+    edit_date = models.DateField(default=timezone.now)
 
     class Meta:
         db_table = 'book'
@@ -41,3 +47,5 @@ class Book(models.Model):
 
     def get_absolute_url(self):
         return reverse('edit_book', kwargs={'book_id': self.id})
+
+pre_save.connect(pre_save_edit_book_date, sender = Book)

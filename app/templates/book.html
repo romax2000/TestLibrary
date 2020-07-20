@@ -10,7 +10,10 @@
 			<td><strong>Название книги</strong></td>
 			<td><strong>Автор</strong></td>
 			<td><strong>Год издания</strong></td>
-			<td></td>
+			<td><strong>Цена</strong></td>
+			<td><strong>Страниц</strong></td>
+			<td><strong>Дата добавления</strong></td>
+			<td><strong>Дата изменения</strong></td>
 		</tr>
 		{%else%}
 		<p>У пользователя {{ reader }} нет книг.</p>
@@ -20,6 +23,10 @@
 			<td><a href="{{ book.get_absolute_url }}">{{ book.book_name }}</a></td>
 			<td>{{ book.author_full_name }}</td>
 			<td>{{ book.year }}</td>
+			<td>{{ book.cost }}</td>
+			<td>{{ book.pages }}</td>
+			<td>{{ book.create_date }}</td>
+			<td>{{ book.edit_date }}</td>
 			<td><a href = '{{ book.get_absolute_url }}'><button>Изменить книгу</button></td>
 			<td><a href = '{% url "remove_book" book_id=book.id %}'><button>Удалить книгу</button></td>
 		</tr>

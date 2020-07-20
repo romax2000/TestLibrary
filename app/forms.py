@@ -1,4 +1,5 @@
 from django import forms
+from sys import float_info
 from app.models import User, Book
 
 
@@ -79,13 +80,17 @@ class NewBookForm(forms.Form):
     book_name = forms.CharField(max_length=200, min_length=1)
     author_full_name = forms.CharField(max_length=200, min_length=5)
     year = forms.IntegerField(max_value=2020, min_value=1)
+    cost = forms.FloatField(max_value=float_info.max, min_value=float_info.min)
+    pages = forms.IntegerField(min_value=1, max_value=23675)
 
     class Meta:
         model = Book
         fields = [
             'book_name',
             'author_full_name',
-            'year'
+            'year',
+            'cost',
+            'pages'
         ]
 
     def __init__(self, *args, **kwargs):
@@ -93,19 +98,25 @@ class NewBookForm(forms.Form):
         self.fields['book_name'].label = 'Название книги'
         self.fields['author_full_name'].label = 'Автор'
         self.fields['year'].label = 'Год издания'
+        self.fields['cost'].label = 'Цена'
+        self.fields['pages'].label = 'Страниц'
 
 
 class EditBookForm(forms.Form):
     book_name = forms.CharField(max_length=200, min_length=1)
     author_full_name = forms.CharField(max_length=200, min_length=5)
     year = forms.IntegerField(max_value=2020, min_value=1)
+    cost = forms.FloatField(max_value=float_info.max, min_value=float_info.min)
+    pages = forms.IntegerField(min_value=1, max_value=23675)
 
     class Meta:
         model = Book
         fields = [
             'book_name',
             'author_full_name',
-            'year'
+            'year',
+            'cost',
+            'pages'
         ]
 
     def __init__(self, book, *args, **kwargs):
@@ -116,3 +127,7 @@ class EditBookForm(forms.Form):
         self.fields['author_full_name'].initial = book.author_full_name
         self.fields['year'].label = 'Год издания'
         self.fields['year'].initial = book.year
+        self.fields['cost'].label = 'Цена'
+        self.fields['cost'].initial = book.cost
+        self.fields['pages'].label = 'Страниц'
+        self.fields['pages'].initial = book.pages

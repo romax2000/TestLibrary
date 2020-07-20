@@ -67,8 +67,10 @@ def book_view(request, user_id):
         book_name = form.cleaned_data['book_name']
         author_full_name = form.cleaned_data['author_full_name']
         year = form.cleaned_data['year']
+        cost = form.cleaned_data['cost']
+        pages = form.cleaned_data['pages']
         Book.objects.create(
-            reader=reader, book_name=book_name, author_full_name=author_full_name, year=year)
+            reader=reader, book_name=book_name, author_full_name=author_full_name, year=year, cost=cost, pages=pages)
         return HttpResponseRedirect('/book/'+user_id+'/')
 
     context = {
@@ -86,9 +88,13 @@ def edit_book_view(request, book_id):
         book_name = form.cleaned_data['book_name']
         author_full_name = form.cleaned_data['author_full_name']
         year = form.cleaned_data['year']
+        cost = form.cleaned_data['cost']
+        pages = form.cleaned_data['pages']
         book.book_name = book_name
         book.author_full_name = author_full_name
         book.year = year
+        book.cost = cost
+        book.pages = pages
         book.save()
         return HttpResponseRedirect('/book/'+str(book.reader.id)+'/')
 
