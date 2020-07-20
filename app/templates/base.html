@@ -1,4 +1,5 @@
 {% load crispy_forms_tags %}
+{% load bootstrap3 %}
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,7 +16,7 @@
 	{% block content %}
 	<div>
 		<table>
-			{% if users.count > 0 %}
+			{% if users %}
 			<tr>
 				<td><strong>ФИО</strong></td>
 				<td><strong>Дата рождения</strong></td>
@@ -37,6 +38,7 @@
 			</tr>
 			{% endfor %}
 		</table>
+		{% bootstrap_pagination users %}
 	</div>
 	<div>
 		<hr>
