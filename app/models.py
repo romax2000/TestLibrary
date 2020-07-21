@@ -35,8 +35,8 @@ class Book(models.Model):
     year = models.CharField(max_length=4)
     cost = models.FloatField()
     pages = models.IntegerField()
-    create_date = models.DateField(default=timezone.now)
-    edit_date = models.DateField(default=timezone.now)
+    create_date = models.DateField(auto_now_add=True)
+    edit_date = models.DateField(auto_now_add=True)
 
     class Meta:
         db_table = 'book'

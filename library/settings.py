@@ -16,7 +16,7 @@ import environ
 
 project_root = environ.Path(__file__) - 3  
 env = environ.Env(DEBUG=(bool, False),)  
-CURRENT_ENV = 'dev'
+CURRENT_ENV = 'docker-compose-env/web'
 env.read_env('{}.env'.format(CURRENT_ENV))
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -91,7 +91,7 @@ DATABASES = {
         'NAME': 'postgres',
         'USER' : 'postgres',
         'PASSWORD' : 'postgres',
-        'HOST' : '127.0.0.1',
+        'HOST' : 'db',
         'PORT' : '5432',
     }
 }
@@ -154,7 +154,7 @@ EMAIL_PORT = 465
 EMAIL_USE_SSL = True
 
 # REDIS related settings 
-REDIS_HOST = 'localhost'
+REDIS_HOST = 'redis'
 REDIS_PORT = '6379'
 BROKER_URL = 'redis://' + REDIS_HOST + ':' + REDIS_PORT + '/0'
 BROKER_TRANSPORT_OPTIONS = {'visibility_timeout': 3600} 

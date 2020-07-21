@@ -12,12 +12,14 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data/
   celery:
-    image: celery
+    build:
+      context: .
+      dockerfile: ./CeleryDockerfile
     command: celery -A library worker --pool=solo -l info
     volumes:
       - .:/code
-    links:
-      - redis
+    env_file:
+      - docker-compose-env/web.env
   web:
     build: .
     command: gunicorn library.wsgi:application --bind 0.0.0.0:8000
